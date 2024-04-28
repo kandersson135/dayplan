@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="theme-color" content="#3c3e3d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="mobile-web-app-capable" content="yes">
+
+  <link rel="apple-touch-icon" href="img/webapp-icon.png">
+	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+	<title>Dagens översikt - Furuparkskolan</title>
+
+  <!-- css -->
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+  <div class="container">
+    <!--
+    Dagens datum
+    Idag stänger
+    Dagens lunch
+    Frånvarande personal
+    -->
+
+    <div class="table">
+      <div class="table-row">
+        <div class="table-cell head">Datum</div>
+        <div class="table-cell body" id="todays-date"></div>
+      </div><!-- end row -->
+
+      <div class="table-row">
+        <div class="table-cell head">Dagens lunch</div>
+        <div class="table-cell body" id="lunch-text"></div>
+      </div><!-- end row -->
+
+      <div class="table-row">
+        <div class="table-cell head">Idag stänger</div>
+        <div class="table-cell body" id="closing-text"></div>
+      </div><!-- end row -->
+
+      <div class="table-row">
+        <div class="table-cell head">Vi är borta</div>
+        <div class="table-cell body"></div>
+      </div><!-- end row -->
+
+      <div class="table-row">
+        <div class="table-cell head">&nbsp;</div>
+        <div class="table-cell body">Ha en bra dag :)</div>
+      </div><!-- end row -->
+    </div> <!-- end table -->
+  </div><!-- end container -->
+
+  <!-- js -->
+  <script src="js/jquery-3.6.0.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    $(document).ready(function(){
+      function displayDate() {
+        var days = ['Söndag', 'Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag'];
+        var months = ['januari', 'februari', 'mars', 'april', 'maj', 'juni', 'juli', 'augusti', 'september', 'oktober', 'november', 'december'];
+
+        var today = new Date();
+        var dayName = days[today.getDay()];
+        var day = today.getDate();
+        var monthName = months[today.getMonth()];
+
+        var dateText = dayName + " " + day + " " + monthName;
+        $("#todays-date").text(dateText);
+      }
+
+      function displayLunch() {
+        var today = new Date();
+        var day = today.getDay();
+        var lunchText = "";
+
+        switch(day) {
+            case 1: // Monday
+                lunchText = "Italiensk tomatsås med pasta";
+                break;
+            case 2: // Tuesday
+                lunchText = "Ostgratinerad potatis & färsgratäng";
+                break;
+            case 3: // Wednesday
+                lunchText = "Pannbiff med potatis & gräddsås";
+                break;
+            case 4: // Thursday
+                lunchText = "Potatis & purjolökssoppa ";
+                break;
+            case 5: // Friday
+                lunchText = "Fisktacos";
+                break;
+            default:
+                lunchText = "";
+        }
+
+        $("#lunch-text").text(lunchText);
+      }
+
+      function displayClosingPerson() {
+        var today = new Date();
+        var day = today.getDay();
+        var closingPerson = "";
+
+        // Array of people responsible for closing the school each weekday
+        var weekdayClosers = ["Kim", "Ulrika", "Heidi", "Stina A"];
+
+        // Array of people responsible for closing the school on specific Fridays
+        var fridayClosers = ["Ulrika", "Heidi", "Stina A", "Kim"];
+
+        if (day >= 1 && day <= 4) { // Monday to Thursday
+            closingPerson = weekdayClosers[day - 1]; // Adjusting array index
+        } else if (day === 5) { // Friday
+            // We have 8 different Fridays, so we can rotate the array
+            closingPerson = fridayClosers[(today.getDate() % 4) - 2]; // Adjusting array index
+        } else {
+            closingPerson = "";
+        }
+
+        $("#closing-text").text(closingPerson);
+      }
+
+      // Call the functions when the page loads
+      displayDate();
+      displayLunch();
+      displayClosingPerson();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+@font-face {
+  font-family: "DJB Chalk It Up";
+  src: url("../fonts/DJB/DJBChalkItUp.eot");
+  src: url("../fonts/DJB/DJBChalkItUp.eot?#iefix") format("embedded-opentype"), url("../fonts/DJB/DJBChalkItUp.woff") format("woff"), url("../fonts/DJB/DJBChalkItUp.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+	animation: fadein 2s;
+  background: #3c3e3d;
+  color: #eee;
+  font-family: "DJB Chalk It Up";
+  user-select: none;
+}
+
+/* container */
+.container {
+  margin: 0;
+  width: auto;
+}
+
+/* table */
+.table {
+  display: table;
+  font-size: 50px;
+  width: 100%;
+}
+.table-row {
+  display: table-row;
+}
+.table-cell {
+  border-bottom: 2px solid #bbb;
+  border-left: 2px solid #bbb;
+  display: table-cell;
+  padding: 40px 10px;
+}
+.table-cell:first-child {
+  border-left: 0;
+}
+.table-row:last-child .table-cell {
+  border-bottom: 0;
+}
+.head {
+  color: #989866;
+  width: 30%;
+}
+.body {
+  text-indent: 20px;
+}
+.table img {
+  margin: 0;
+  padding: 0;
+}
+
+/* custom classes */
+.right {float: right;}
+.left {float: left;}
+.bold {font-weight: bold;}
+.italic {font-style: italic;}
+.underline {border-bottom: 1px solid #d8d8d8; padding-bottom: 5px;}
+.center {text-align: center;}
+img.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* animations */
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
