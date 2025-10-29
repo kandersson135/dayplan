@@ -64,7 +64,7 @@ $(document).ready(function(){
   }
 
   function displayAbsence() {
-    $("#absence-text").text("");
+    $("#absence-text").text("Kim");
   }
 
   // Call the functions when the page loads
